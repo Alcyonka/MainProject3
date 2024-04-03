@@ -22,7 +22,7 @@ export default function TextEditor() {
         const s = io("http://localhost:3001")
         setSocket(s)
         return() => {
-            socket.disconnect()
+            s.disconnect()
         }
     }, [])
 
@@ -56,7 +56,10 @@ export default function TextEditor() {
         wrapper.innerHTML = ''
         const editor = document.createElement('div')
         wrapper.append(editor)
-        const q = new Quill(editor, {theme: 'snow', modules:{toolbar: TOOLBAR_OPTIONS }})
+        const q = new Quill(editor, {
+            theme: 'snow', 
+            modules:{toolbar: TOOLBAR_OPTIONS },
+        })
         setQuill(q)
     }, [])
   return <div className="container" ref={wrapperRef}></div>
